@@ -1,0 +1,18 @@
+<div class="well span9" id="selectservice">
+	<div class="container" ng-controller="GoogleController">
+		<button ng-click="connectButton()" id="connectButton" type="button"
+			class="btn btn-primary">Google</button>
+	</div>
+
+	<div class="container" ng-controller="FacebookController">
+		<button ng-click="connectButton()" id="connectButton" type="button"
+			class="btn btn-primary">Facebook</button>
+	</div>
+
+	<div ng-if="App.properties.isdev">
+		<div class="container" ng-controller="MockOauthController">
+			<button ng-click="connectButton()" id="connectButton" type="button"
+				class="btn btn-primary">Mock</button>
+		</div>
+	</div>
+</div>

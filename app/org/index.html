@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" ng-app="waazdohApp">
+<head>
+<meta charset="utf-8">
+<title>Streetapp</title>
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="CDN_BOOTSWATCH_CSS/bootstrap.min.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/animations.css">
+
+</head>
+
+<body>
+	<nav ng-controller="NavbarCtrl" ng-show="shownav" class="ng-hide" class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" ui-sref="/">Streetapp</a>
+			</div>
+
+			<div id="navbar"
+				class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+				</ul>
+				<div class="navbar-text navbar-right ng-hide" ng-show="navbarinit">
+					<div ng-show="session.isloggedin == true" class="ng-hide" >
+						<a ui-sref="profile" class="navbar-link">{{ session.name }}</a> <a
+							ng-click="logout()">Logout</a>
+
+					</div>
+					<div ng-if="session.isloggedin == false">
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary btn-lg" ng-click="loginOpen()">
+						  Login
+						</button>
+					</div>
+				</div>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<div ui-view></div>
+	</div>
+
+	<div ng-controller="DebugCtrl" ng-show="showdebug" class="ng-hide" id="debug">
+	</div>
+	
+	<script
+		src="CDN_CLOUDFLARE/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script
+		src="CDN_CLOUDFLARE/libs/angular.js/1.5.3/angular.min.js"></script>
+	<script
+		src="CDN_CLOUDFLARE/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+	<script
+		src="CDN_CLOUDFLARE/libs/angular.js/1.5.3/angular-resource.min.js"></script>
+	<script
+		src="CDN_CLOUDFLARE/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+	<script
+		src="CDN_CLOUDFLARE/libs/angular-ui-bootstrap/1.2.5/ui-bootstrap-tpls.min.js"></script>
+	<script
+		src="CDN_CLOUDFLARE/libs/angular.js/1.5.3/angular-cookies.min.js"></script>
+
+	<script src="CDN_BOOTSRAP_JS/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<script src="js/settings.js"></script>
+	<script src="js/oauth.min.js"></script>
+	<script src="js/debug.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/services.js"></script>
+
+</body>
+</html>

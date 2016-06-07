@@ -1,0 +1,27 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+			<!--Sidebar content-->
+
+			Search: <input ng-model="query"> Sort by: <select
+				ng-model="orderProp">
+				<option value="name">Alphabetical</option>
+				<option value="age">Newest</option>
+			</select>
+
+		</div>
+		<div class="col-md-10">
+			<!--Body content-->
+			<h3>LIST</h3>
+
+			<ul class="messages">
+				<li ng-repeat="message in messages | filter:query | orderBy:orderProp"
+					class="thumbnail message-listing"><a
+					href="#/messages/{{message.id}}" class="thumb"><img
+						ng-src="{{message.imageUrl}}"></a> <a
+					href="#/messages/{{message.id}}">{{message.name}}</a>
+					<p>{{message.snippet}}</p></li>
+			</ul>
+		</div>
+	</div>
+</div>

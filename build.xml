@@ -1,0 +1,31 @@
+<project>
+	<import file="ant.xml" />
+
+	<property name="projectname" value="streetapp.web" />
+	<property environment="env" />
+
+	<target name="gaet.check.uptodate">
+		<uptodate property="gaet.notrequired" targetfile="${java.io.tmpdir}/streetapp.web.trig">
+			<srcfiles dir="." includes="*.xml" excludes="target/" />
+			<srcfiles dir="src/" includes="*/**" excludes="target/" />
+		</uptodate>
+	</target>
+
+	<target name="streetappgaet_dobuild" unless="gaet.notrequired">
+		<echo file="${java.io.tmpdir}/streetapp.web.trig">Done</echo>
+
+		<ant target="runmvn">
+			<property name="args" value="-Dservice.host=${mongodb.host} -Pdev package" />
+		</ant>
+
+		<copy todir="../streetapp.service/target/webapps/">
+			<fileset dir="target" includes="*.war" />
+		</copy>
+
+	</target>
+
+	<target name="build" depends="gaet.check.uptodate, streetappgaet_dobuild">
+		<echo>Done</echo>
+	</target>
+
+</project>

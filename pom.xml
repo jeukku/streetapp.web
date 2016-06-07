@@ -13,7 +13,7 @@
 	<properties>
 		<project.Organization.Name>streetapp</project.Organization.Name>
 
-		<spring.version>4.1.0.RELEASE</spring.version>
+		<spring.version>4.2.6.RELEASE</spring.version>
 
 		<jersey.version>2.22.2</jersey.version>
 		<jettyVersion>9.3.8.v20160314</jettyVersion>
@@ -29,7 +29,7 @@
 		<repository>
 			<id>streetapp</id>
 			<name>streetapp</name>
-			<url>http://maven.streetapp.com/repository</url>
+			<url>http://maven.waazdoh.com/repository</url>
 		</repository>
 	</repositories>
 
@@ -48,11 +48,37 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-<dependency>
-    <groupId>com.sparkjava</groupId>
-    <artifactId>spark-core</artifactId>
-    <version>2.5</version>
-</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.bundles</groupId>
+			<artifactId>jaxrs-ri</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging-api</artifactId>
+			<version>1.1</version>
+		</dependency>
 
 	</dependencies>
 

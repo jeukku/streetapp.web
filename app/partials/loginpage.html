@@ -1,0 +1,9 @@
+<div ng-controller="loginCtrl as clogin">
+	<h1>Login</h1>
+
+	<error>{{ info.autherror }}</error>
+
+	<div ng-if="session.isloggedin == false">
+		<div ui-view></div>
+	</div>
+</div>
