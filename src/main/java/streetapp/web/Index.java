@@ -22,7 +22,7 @@ public class Index extends PageComponent {
 	@GET
 	@Produces("text/html")
 	@Path("/")
-	public String index(@PathParam(value = "file") String file) throws FileNotFoundException, IOException {
+	public String index() throws FileNotFoundException, IOException {
 		return getFile("org/index.html");
 	}
 

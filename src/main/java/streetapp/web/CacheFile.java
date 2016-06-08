@@ -1,8 +1,11 @@
 package streetapp.web;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
+import streetapp.SALog;
 
 public class CacheFile {
 
@@ -31,7 +34,7 @@ public class CacheFile {
 	}
 
 	private void appendFile(StringBuilder sb) throws IOException {
-		BufferedReader fr = new BufferedReader(new FileReader(filename));
+		BufferedReader fr = new BufferedReader(new FileReader(findFilePath()));
 		while (true) {
 			String line = fr.readLine();
 			if (line == null) {
@@ -43,6 +46,22 @@ public class CacheFile {
 		}
 		fr.close();
 
+	}
+
+	private String findFilePath() {
+		File f = new File(filename);
+		if (f.exists()) {
+			return filename;
+		}
+
+		String nf = "app" + File.separator + filename;
+		if (new File(nf).exists()) {
+			return nf;
+		}
+
+		SALog.getLogger(this).info("unknown file " + filename + " " + new File(".").getAbsolutePath());
+
+		return "unknown";
 	}
 
 	public void setContent(String ncontent) {

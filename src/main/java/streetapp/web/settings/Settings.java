@@ -1,49 +1,39 @@
 package streetapp.web.settings;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
 import streetapp.SALog;
 
 public class Settings {
-	private Properties p;
+	private static final String REPLACE_ORG_INDEX_HTML = "replace_org_index.html";
+	private static final String ISDEVSERVER = "isdevserver";
+
+	private Map<String, String> p = new HashMap<>();
 	private SALog log = SALog.getLogger(this);
 
 	public Settings() {
 		// getParameter("start");
+		p.put(ISDEVSERVER, "false");
+		p.put(REPLACE_ORG_INDEX_HTML, "");
 	}
 
 	public String getParameter(String name) {
 		name = name.replace("/", "_");
-		return getProperties().getProperty(name);
-	}
-
-	private Properties getProperties() {
-		if (p == null) {
-			p = new Properties();
-			try {
-				p.load(getClass().getResourceAsStream("dev.ini"));
-			} catch (IOException e) {
-				log.error(e);
-			}
+		String value = System.getenv("streetapp.web." + name);
+		if (value == null) {
+			value = p.get(name);
 		}
-		return p;
-	}
 
-	private String getProperty(String name) {
-		Properties p = new Properties();
-		try {
-			p.load(new FileReader("WEB-INF/defaultvalues.ini"));
-			return p.getProperty(name);
-		} catch (IOException e) {
-			SALog.getLogger(this).error(e);
-			return null;
+		if (value == null) {
+			throw new RuntimeException("requesting unknown parameter " + name);
 		}
+
+		return value;
 	}
 
 	public boolean isDevServer() {
-		return getParameter("isdevserver").equals("true");
+		return getParameter(ISDEVSERVER).equals("true");
 	}
 
 }

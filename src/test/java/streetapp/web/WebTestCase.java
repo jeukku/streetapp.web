@@ -16,7 +16,7 @@ import streetapp.SALog;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ComponentScan("streetapp.web")
 @ContextConfiguration("ApplicationContext.xml")
-public class ServiceTestCase extends TestCase {
+public class WebTestCase extends TestCase {
 	protected SALog log = SALog.getLogger(this);
 
 	@Autowired
@@ -34,4 +34,7 @@ public class ServiceTestCase extends TestCase {
 		assertNotNull(index);
 	}
 
+	public Index getIndex() {
+		return index;
+	}
 }
